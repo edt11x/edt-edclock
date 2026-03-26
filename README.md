@@ -14,6 +14,7 @@ A modern, ultra-compact Linux desktop clock and calendar application built with 
     - "Always on Top" functionality.
     - Integrated drag handle for easy positioning.
     - Dedicated close button.
+    - **Clean Launch**: Automatically detects and terminates previous instances before starting a new one.
 
 ## Development
 
