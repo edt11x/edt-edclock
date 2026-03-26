@@ -29,3 +29,7 @@ logs
 # Misc
 .cache/
 .eslintcache
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js
+
