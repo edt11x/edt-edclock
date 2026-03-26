@@ -17,10 +17,16 @@ A modern, ultra-compact Linux desktop clock and calendar application built with 
 
 ## Development
 
+To set up the environment (requires [NVM](https://github.com/nvm-sh/nvm)):
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 To start the application in development mode with hot-reloading:
 
 ```bash
-npm install
 npm run electron:dev
 ```
 
