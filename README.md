@@ -24,10 +24,11 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-To start the application in development mode with hot-reloading:
+To start the application:
 
 ```bash
-npm run electron:dev
+chmod +x run.sh
+./run.sh
 ```
 
 ## Building
