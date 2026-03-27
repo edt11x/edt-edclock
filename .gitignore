@@ -22,6 +22,14 @@ build/
 .env
 *.local
 
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
 # Logs
 logs
 *.log

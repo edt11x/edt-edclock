@@ -2,6 +2,22 @@
 
 A modern, ultra-compact Linux desktop clock and calendar application built with React, TypeScript, and Electron. Designed for XFCE, Gnome, and other Linux desktop environments.
 
+## Project Versions
+
+This project is available in two implementations:
+
+### 1. React + Electron (Original)
+Modern, web-based implementation using React, TypeScript, and Electron.
+- **Location**: Root directory
+- **Setup**: `./setup.sh`
+- **Run**: `./run.sh`
+
+### 2. Python + Qt (PySide6)
+Native Python implementation using the Qt framework.
+- **Location**: `edt-edclock-py/`
+- **Setup**: `cd edt-edclock-py && ./setup-py.sh`
+- **Run**: `cd edt-edclock-py && ./run.sh`
+
 ## Features
 
 - **Large Digital Clock**: High-visibility time display with a sleek monospace font.
