@@ -28,6 +28,6 @@ python main.py
 - **Digital Clock**: High-visibility time display.
 - **Date Display**: Shows the day of the week and full date.
 - **Interactive Calendar**: Navigate through months and years.
-- **Compact UI**: 280x380px layout.
+- **Compact UI**: 320x310px layout.
 - **Frameless & Draggable**: Move the window anywhere on your desktop.
 - **Stay on Top**: Always visible above other windows.

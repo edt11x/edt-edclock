@@ -35,12 +35,12 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 10px;
+  padding: 6px 10px 10px 10px;
   width: 280px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   position: relative;
   user-select: none;
 }
@@ -81,7 +81,7 @@ body {
 
 .app-header {
   text-align: center;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .clock-time {
@@ -117,14 +117,14 @@ body {
 .calendar-container {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  padding: 6px;
+  padding: 4px;
 }
 
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .month-year-display {
@@ -153,7 +153,7 @@ body {
   text-align: center;
   font-size: 0.65rem;
   opacity: 0.5;
-  margin-bottom: 2px;
+  margin-bottom: 0px;
   font-weight: 700;
 }
 
@@ -164,7 +164,7 @@ body {
 }
 
 .calendar-day {
-  aspect-ratio: 1.2;
+  aspect-ratio: 1.6;
   display: flex;
   align-items: center;
   justify-content: center;

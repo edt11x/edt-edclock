@@ -23,7 +23,7 @@ Native Python implementation using the Qt framework.
 - **Large Digital Clock**: High-visibility time display with a sleek monospace font.
 - **Full Date Display**: Shows the day of the week and the complete date.
 - **Interactive Calendar**: Navigate through months and years with a compact, grid-based calendar highlighting the current day.
-- **Ultra-Compact Design**: Optimized vertical layout (320x380px) to save screen real estate.
+- **Ultra-Compact Design**: Optimized vertical layout (320x310px) to save screen real estate.
 - **Modern Aesthetics**: Dark-themed UI with glassmorphism (background blur), transparency, and subtle transitions.
 - **Desktop Ready**: 
     - Frameless window design.

@@ -16,8 +16,8 @@ class CalendarWidget(QWidget):
 
     def init_ui(self):
         self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(6, 6, 6, 6)
-        self.layout.setSpacing(4)
+        self.layout.setContentsMargins(6, 2, 6, 6)
+        self.layout.setSpacing(2)
 
         # Header
         header_layout = QHBoxLayout()
@@ -112,7 +112,7 @@ class CalendarWidget(QWidget):
                 
                 label = QLabel(str(day))
                 label.setAlignment(Qt.AlignCenter)
-                label.setFixedSize(32, 26)
+                label.setFixedSize(32, 18)
                 
                 is_today = (day == today.day and month == today.month and year == today.year)
                 
@@ -152,8 +152,8 @@ class EdClock(QMainWindow):
         
         # Main Layout
         self.main_layout = QVBoxLayout(self.central_widget)
-        self.main_layout.setContentsMargins(10, 10, 10, 10)
-        self.main_layout.setSpacing(8)
+        self.main_layout.setContentsMargins(20, 6, 20, 10)
+        self.main_layout.setSpacing(4)
 
         # Style sheet for main container
         self.central_widget.setStyleSheet("""
@@ -249,7 +249,7 @@ class EdClock(QMainWindow):
         self.timer.start(1000)
         self.update_time()
 
-        self.setFixedSize(280, 380)
+        self.setFixedSize(320, 310)
 
     def update_time(self):
         now = datetime.now()
