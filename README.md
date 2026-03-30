@@ -1,6 +1,6 @@
 # edt-edclock
 
-A modern, ultra-compact Linux desktop clock and calendar application built with React, TypeScript, and Electron. Designed for XFCE, Gnome, and other Linux desktop environments.
+A modern, ultra-compact Linux desktop clock and calendar application built with React, TypeScript, and Electron. Designed for XFCE, GNOME, and other Linux desktop environments.
 
 ## Project Versions
 
@@ -17,20 +17,47 @@ Native Python implementation using the Qt framework.
 - **Location**: `edt-edclock-py/`
 - **Setup**: `cd edt-edclock-py && ./setup-py.sh`
 - **Run**: `cd edt-edclock-py && ./run.sh`
+- **Background / login autostart**: `cd edt-edclock-py && ./start-background.sh`
 
 ## Features
 
-- **Large Digital Clock**: High-visibility time display with a sleek monospace font.
+- **Large Digital Clock**: High-visibility time display with a monospace font. In the Python version, hours, minutes, and seconds are rendered in distinct accent colors (blue / violet / emerald).
 - **Full Date Display**: Shows the day of the week and the complete date.
-- **Interactive Calendar**: Navigate through months and years with a compact, grid-based calendar highlighting the current day.
-- **Ultra-Compact Design**: Optimized vertical layout (320x310px) to save screen real estate.
-- **Modern Aesthetics**: Dark-themed UI with glassmorphism (background blur), transparency, and subtle transitions.
+- **Interactive Calendar**: Navigate through months and years with a compact grid calendar. Today is highlighted, and weekend columns are color-coded.
+- **Ultra-Compact Design**: Optimized vertical layout (320×318 px) to save screen real estate.
+- **Modern Aesthetics**: Dark-themed UI with a multi-color accent palette, subtle purple border glow, and a separator line between the clock and date sections.
 - **Desktop Ready**:
     - Frameless window design.
     - "Always on Top" functionality.
-    - Draggable window — click anywhere on the window to reposition it (Wayland/GNOME compatible in the Python version).
+    - Draggable window — click anywhere to reposition (Wayland/GNOME compatible in the Python version).
     - Dedicated close button.
     - **Clean Launch**: Automatically detects and terminates previous instances before starting a new one.
+
+## Login Autostart (Python version)
+
+`start-background.sh` launches the clock fully detached from the terminal using `nohup` + `setsid`, so it survives after the calling shell exits. It also kills any previous instance on re-launch. Logs are written to `edclock.log` and the PID is stored in `edclock.pid`.
+
+Wire it into your login using whichever method fits your desktop:
+
+**Shell profile** (any login shell):
+```bash
+echo '/path/to/edt-edclock/edt-edclock-py/start-background.sh' >> ~/.profile
+```
+
+**X11 session start:**
+```bash
+echo '/path/to/edt-edclock/edt-edclock-py/start-background.sh' >> ~/.xprofile
+```
+
+**GNOME autostart .desktop entry** (recommended for GNOME):
+```ini
+# ~/.config/autostart/edt-edclock.desktop
+[Desktop Entry]
+Type=Application
+Name=edt-edclock
+Exec=/path/to/edt-edclock/edt-edclock-py/start-background.sh
+X-GNOME-Autostart-enabled=true
+```
 
 ## Development
 
@@ -64,4 +91,5 @@ The output will be located in the `dist-electron` directory.
 - [Vite](https://vitejs.dev/)
 - [Electron](https://www.electronjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [PySide6 / Qt](https://doc.qt.io/qtforpython/)
 - [Vanilla CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
