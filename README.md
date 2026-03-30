@@ -25,10 +25,10 @@ Native Python implementation using the Qt framework.
 - **Interactive Calendar**: Navigate through months and years with a compact, grid-based calendar highlighting the current day.
 - **Ultra-Compact Design**: Optimized vertical layout (320x310px) to save screen real estate.
 - **Modern Aesthetics**: Dark-themed UI with glassmorphism (background blur), transparency, and subtle transitions.
-- **Desktop Ready**: 
+- **Desktop Ready**:
     - Frameless window design.
     - "Always on Top" functionality.
-    - Integrated drag handle for easy positioning.
+    - Draggable window — click anywhere on the window to reposition it (Wayland/GNOME compatible in the Python version).
     - Dedicated close button.
     - **Clean Launch**: Automatically detects and terminates previous instances before starting a new one.
 

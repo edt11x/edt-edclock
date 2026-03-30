@@ -259,11 +259,19 @@ class EdClock(QMainWindow):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            self.drag_pos = event.globalPos() - self.frameGeometry().topLeft()
+            # startSystemMove() delegates dragging to the compositor,
+            # which is required for Wayland/GNOME where globalPos() is unreliable.
+            win = self.windowHandle()
+            if win:
+                win.startSystemMove()
+            else:
+                # Fallback for X11 without compositor delegation
+                self.drag_pos = event.globalPos() - self.frameGeometry().topLeft()
             event.accept()
 
     def mouseMoveEvent(self, event):
-        if event.buttons() == Qt.LeftButton:
+        # Only used as fallback when startSystemMove() is unavailable
+        if event.buttons() == Qt.LeftButton and not self.drag_pos.isNull():
             self.move(event.globalPos() - self.drag_pos)
             event.accept()
 
