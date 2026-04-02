@@ -1,6 +1,10 @@
 import sys
 from datetime import datetime, date
 import calendar
+
+# Set calendar to start on Sunday to match UI headers (S M T W T F S)
+calendar.setfirstweekday(calendar.SUNDAY)
+
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QGridLayout, QFrame
