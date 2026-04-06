@@ -175,6 +175,7 @@ class EdClock(QMainWindow):
     def __init__(self):
         super().__init__()
         self.drag_pos = QPoint()
+        self.last_date = None
         self.init_ui()
 
     def init_ui(self):
@@ -278,6 +279,15 @@ class EdClock(QMainWindow):
 
     def update_time(self):
         now = datetime.now()
+        curr_date = now.date()
+
+        if curr_date != self.last_date:
+            self.last_date = curr_date
+            self.day_name_label.setText(now.strftime("%A").upper())
+            self.full_date_label.setText(now.strftime("%B %d, %Y"))
+            # Re-render calendar so is_today is re-evaluated with the new date
+            self.calendar_widget.update_calendar()
+
         h, m, s = now.strftime("%H"), now.strftime("%M"), now.strftime("%S")
         colon = f"<span style='color:{C_COLON}'>:</span>"
         self.clock_label.setText(
@@ -285,8 +295,6 @@ class EdClock(QMainWindow):
             f"<span style='color:{C_MIN}'>{m}</span>{colon}"
             f"<span style='color:{C_SEC}'>{s}</span>"
         )
-        self.day_name_label.setText(now.strftime("%A").upper())
-        self.full_date_label.setText(now.strftime("%B %d, %Y"))
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
