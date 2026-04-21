@@ -21,11 +21,12 @@ Native Python implementation using the Qt framework.
 
 ## Features
 
-- **Large Digital Clock**: High-visibility time display with a monospace font. In the Python version, hours, minutes, and seconds are rendered in distinct accent colors (blue / violet / emerald).
+- **Large Digital Clock**: High-visibility time display with a monospace font. In the Python version, hours, minutes, and seconds are rendered in graduated Obsidian accent tones (off-white / lavender / deep violet).
 - **Full Date Display**: Shows the day of the week and the complete date.
 - **Interactive Calendar**: Navigate through months and years with a compact grid calendar. Today is highlighted, and weekend columns are color-coded.
-- **Ultra-Compact Design**: Optimized vertical layout (320×318 px) to save screen real estate.
-- **Modern Aesthetics**: Dark-themed UI with a multi-color accent palette, subtle purple border glow, and a separator line between the clock and date sections.
+- **Disk Usage**: A line below the calendar shows home directory filesystem usage — free space, total, and percentage used. Refreshes every 30 seconds.
+- **Ultra-Compact Design**: Optimized vertical layout (320×342 px Python / 320×334 px Electron) to save screen real estate.
+- **Obsidian-Inspired Aesthetics**: Dark charcoal-violet background (`#1e1e2e`-family), single purple accent (`#7b6cd8`), deep violet today-pill (`#483699`), and muted lavender text — cohesive and easy on the eyes.
 - **Desktop Ready**:
     - Frameless window design.
     - "Always on Top" functionality.

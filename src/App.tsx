@@ -1,6 +1,7 @@
 import Clock from './components/Clock';
 import DateDisplay from './components/DateDisplay';
 import Calendar from './components/Calendar';
+import DiskUsage from './components/DiskUsage';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       </header>
       <main className="app-main">
         <Calendar />
+        <DiskUsage />
       </main>
       <div className="drag-handle" title="Drag to move">⋮</div>
     </div>

@@ -1,4 +1,6 @@
 import sys
+import os
+import shutil
 from datetime import datetime, date
 import calendar
 
@@ -12,21 +14,36 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QTimer, QPoint
 from PySide6.QtGui import QFont, QColor, QPalette
 
-# ── Color palette ──────────────────────────────────────────────────────────────
-C_BG          = "rgba(13, 13, 20, 240)"
-C_BORDER      = "rgba(120, 100, 255, 80)"
-C_HOUR        = "#60a5fa"                    # blue       – hours
-C_MIN         = "#a78bfa"                    # violet     – minutes
-C_SEC         = "#34d399"                    # emerald    – seconds
-C_COLON       = "rgba(255, 255, 255, 60)"
-C_DAY_NAME    = "#f472b6"                    # rose       – day of week
-C_DATE        = "rgba(255, 255, 255, 155)"
-C_MON_LABEL   = "#a5b4fc"                    # lavender   – month/year
-C_NAV_BTN     = "#a5b4fc"
-C_TODAY_BG    = "#6d28d9"                    # deep violet – today pill
-C_WEEKEND_NUM = "#f87171"                    # red-ish    – weekend day numbers
-C_HDR_WEEK    = "rgba(255, 255, 255, 110)"
-C_HDR_WKEND   = "rgba(248, 113, 113, 190)"  # pinkish    – S/S column headers
+# ── Color palette (Obsidian theme) ────────────────────────────────────────────
+C_BG          = "rgba(30, 30, 46, 240)"      # Obsidian dark background
+C_BORDER      = "rgba(123, 108, 216, 60)"    # Obsidian purple border
+C_HOUR        = "#e0def4"                    # off-white  – hours
+C_MIN         = "#9d94e0"                    # lavender   – minutes
+C_SEC         = "#7b6cd8"                    # Obsidian accent – seconds
+C_COLON       = "rgba(224, 222, 244, 40)"    # dim colon
+C_DAY_NAME    = "#7b6cd8"                    # Obsidian accent – day of week
+C_DATE        = "rgba(220, 221, 222, 150)"   # Obsidian text-muted
+C_MON_LABEL   = "#9d94e0"                    # lavender   – month/year
+C_NAV_BTN     = "#9d94e0"                    # lavender
+C_TODAY_BG    = "#483699"                    # Obsidian interactive-accent (deep violet)
+C_WEEKEND_NUM = "#c0a0d0"                    # muted purple-pink – weekend numbers
+C_HDR_WEEK    = "rgba(220, 221, 222, 90)"    # Obsidian text-muted
+C_HDR_WKEND   = "rgba(192, 160, 208, 160)"   # muted purple-pink – S/S column headers
+
+
+def get_disk_usage() -> str:
+    try:
+        usage = shutil.disk_usage(os.path.expanduser("~"))
+        def fmt(b: float) -> str:
+            for unit in ("B", "K", "M", "G", "T"):
+                if b < 1024:
+                    return f"{b:.1f}{unit}" if b < 10 else f"{b:.0f}{unit}"
+                b /= 1024
+            return f"{b:.0f}P"
+        pct = int(usage.used / usage.total * 100)
+        return f"~ {fmt(usage.free)} free of {fmt(usage.total)} ({pct}% used)"
+    except Exception:
+        return ""
 
 
 class CalendarWidget(QWidget):
@@ -62,7 +79,7 @@ class CalendarWidget(QWidget):
                     border-radius: 4px;
                 }}
                 QPushButton:hover {{
-                    background: rgba(124, 111, 247, 0.25);
+                    background: rgba(123, 108, 216, 0.25);
                     color: white;
                 }}
             """)
@@ -164,7 +181,7 @@ class CalendarWidget(QWidget):
                             color: rgba(255, 255, 255, 195);
                         }
                         QLabel:hover {
-                            background: rgba(124, 111, 247, 0.15);
+                            background: rgba(123, 108, 216, 0.15);
                         }
                     """
                 label.setStyleSheet(style)
@@ -216,7 +233,7 @@ class EdClock(QMainWindow):
         self.close_btn.clicked.connect(self.close)
 
         self.drag_handle = QLabel("⠿")
-        self.drag_handle.setStyleSheet(f"color: rgba(165, 180, 252, 65); font-size: 13px;")
+        self.drag_handle.setStyleSheet(f"color: rgba(157, 148, 224, 65); font-size: 13px;")
         self.drag_handle.setCursor(Qt.OpenHandCursor)
 
         controls_layout.addWidget(self.close_btn)
@@ -238,7 +255,7 @@ class EdClock(QMainWindow):
         # Thin accent separator
         sep = QFrame()
         sep.setFrameShape(QFrame.HLine)
-        sep.setStyleSheet("color: rgba(120, 100, 255, 45);")
+        sep.setStyleSheet("color: rgba(123, 108, 216, 40);")
         sep.setFixedHeight(1)
         self.main_layout.addWidget(sep)
 
@@ -270,12 +287,29 @@ class EdClock(QMainWindow):
         self.calendar_widget.setStyleSheet("background: rgba(0, 0, 0, 65); border-radius: 8px;")
         self.main_layout.addWidget(self.calendar_widget)
 
+        # ── Disk usage ─────────────────────────────────────────────────────────
+        self.disk_label = QLabel()
+        self.disk_label.setAlignment(Qt.AlignCenter)
+        self.disk_label.setStyleSheet(
+            "font-size: 13px; font-family: 'JetBrains Mono', monospace;"
+            f"color: rgba(157, 148, 224, 140);"
+        )
+        self.main_layout.addWidget(self.disk_label)
+        self.update_disk()
+
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
         self.timer.start(1000)
         self.update_time()
 
-        self.setFixedSize(320, 318)
+        self.disk_timer = QTimer(self)
+        self.disk_timer.timeout.connect(self.update_disk)
+        self.disk_timer.start(30000)
+
+        self.setFixedSize(320, 342)
+
+    def update_disk(self):
+        self.disk_label.setText(get_disk_usage())
 
     def update_time(self):
         now = datetime.now()
