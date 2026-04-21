@@ -332,17 +332,19 @@ class EdClock(QMainWindow):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
+            self.drag_pos = event.globalPos() - self.frameGeometry().topLeft()
             win = self.windowHandle()
             if win:
                 win.startSystemMove()
-            else:
-                self.drag_pos = event.globalPos() - self.frameGeometry().topLeft()
             event.accept()
 
     def mouseMoveEvent(self, event):
         if event.buttons() == Qt.LeftButton and not self.drag_pos.isNull():
             self.move(event.globalPos() - self.drag_pos)
             event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_pos = QPoint()
 
 
 if __name__ == "__main__":
