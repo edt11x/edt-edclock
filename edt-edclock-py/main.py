@@ -110,7 +110,11 @@ class CalendarWidget(QWidget):
             label = QLabel(day)
             label.setAlignment(Qt.AlignCenter)
             color = C_HDR_WKEND if i in (0, 6) else C_HDR_WEEK
-            label.setStyleSheet(f"font-size: 10px; font-weight: 700; color: {color};")
+            bg = "rgba(244, 114, 182, 0.12)" if i in (0, 6) else "transparent"
+            label.setStyleSheet(
+                f"font-size: 10px; font-weight: 700; color: {color};"
+                f"background: {bg}; border-radius: 3px;"
+            )
             weekdays_layout.addWidget(label, 0, i)
         self.layout.addLayout(weekdays_layout)
 
@@ -168,9 +172,10 @@ class CalendarWidget(QWidget):
                             font-size: 11px;
                             border-radius: 3px;
                             color: {C_WEEKEND_NUM};
+                            background: rgba(244, 114, 182, 0.12);
                         }}
                         QLabel:hover {{
-                            background: rgba(248, 113, 113, 0.12);
+                            background: rgba(244, 114, 182, 0.22);
                         }}
                     """
                 else:

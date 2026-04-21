@@ -188,7 +188,20 @@ body {
 }
 
 .calendar-day.empty {
-  opacity: 0;
+  color: transparent;
+}
+
+/* Shade Sunday (col 1) and Saturday (col 7) across the full grid */
+.calendar-weekdays > :nth-child(1),
+.calendar-weekdays > :nth-child(7) {
+  background: rgba(244, 114, 182, 0.12);
+  border-radius: 3px;
+}
+
+.calendar-grid > :nth-child(7n+1),
+.calendar-grid > :nth-child(7n+7) {
+  background: rgba(244, 114, 182, 0.12);
+  border-radius: 3px;
 }
 
 .disk-usage {
