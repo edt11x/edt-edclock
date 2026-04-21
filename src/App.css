@@ -88,9 +88,9 @@ body {
   font-size: 2.8rem;
   font-weight: 700;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  color: #e0def4;
+  color: #2dd4bf;
   letter-spacing: -1px;
-  text-shadow: 0 0 6px rgba(123, 108, 216, 0.25);
+  text-shadow: 0 0 6px rgba(45, 212, 191, 0.25);
   line-height: 1;
 }
 
@@ -103,14 +103,14 @@ body {
 .day-name {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #7b6cd8;
+  color: #f472b6;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .full-date {
   font-size: 0.75rem;
-  color: rgba(220, 221, 222, 0.6);
+  opacity: 0.7;
 }
 
 /* Calendar Styles */
@@ -130,13 +130,13 @@ body {
 .month-year-display {
   font-weight: 600;
   font-size: 0.8rem;
-  color: #9d94e0;
+  color: #a5b4fc;
 }
 
 .nav-controls button {
   background: transparent;
   border: none;
-  color: #9d94e0;
+  color: #fff;
   cursor: pointer;
   padding: 0px 4px;
   border-radius: 4px;
@@ -145,8 +145,7 @@ body {
 }
 
 .nav-controls button:hover {
-  background: rgba(123, 108, 216, 0.2);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .calendar-weekdays {
@@ -180,7 +179,7 @@ body {
 }
 
 .calendar-day.today {
-  background: #483699;
+  background: #646cff;
   color: #fff;
   font-weight: 700;
 }
@@ -191,7 +190,7 @@ body {
 
 .disk-usage {
   font-size: 0.9rem;
-  color: rgba(157, 148, 224, 0.55);
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   margin-top: 2px;
