@@ -1,0 +1,193 @@
+import { VerticalBox, HorizontalBox } from "std-widgets.slint";
+
+struct CalendarDay {
+    day: string,
+    is_today: bool,
+    is_weekend: bool,
+    is_other_month: bool,
+}
+
+component NavButton inherits Rectangle {
+    in property <string> text;
+    callback clicked <=> touch.clicked;
+    width: 20px;
+    height: 20px;
+    background: touch.pressed ? rgba(124, 111, 247, 0.4) : touch.has-hover ? rgba(124, 111, 247, 0.2) : transparent;
+    border-radius: 4px;
+    
+    Text {
+        text: root.text;
+        font-size: 14px;
+        color: touch.has-hover ? #ffffff : #a5b4fc;
+        horizontal-alignment: center;
+        vertical-alignment: center;
+    }
+
+    touch := TouchArea {
+        mouse-cursor: pointer;
+    }
+}
+
+export component AppWindow inherits Window {
+    title: "edt-edclock (Slint)";
+    min-width: 280px;
+    min-height: 300px;
+    background: @linear-gradient(180deg, #1e1e2e 0%, #181825 100%);
+
+    in property <string> time_hour: "00";
+    in property <string> time_min: "00";
+    in property <string> time_sec: "00";
+    in property <string> date_text: "Monday, Jan 01 2026";
+    in property <string> month_year: "January 2026";
+    in property <[CalendarDay]> calendar_days;
+    in property <string> disk_usage: "Checking disk usage...";
+
+    callback prev_month();
+    callback next_month();
+    callback prev_year();
+    callback next_year();
+
+    VerticalBox {
+        padding: 2px;
+        spacing: 2px;
+
+        // Clock & Date Section
+        VerticalBox {
+            padding: 0;
+            spacing: 0;
+            HorizontalBox {
+                padding: 0;
+                alignment: center;
+                spacing: 0;
+                Text {
+                    text: time_hour;
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: #2dd4bf;
+                }
+                Text {
+                    text: ":";
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.25);
+                }
+                Text {
+                    text: time_min;
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: #2dd4bf;
+                }
+                Text {
+                    text: ":";
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.25);
+                }
+                Text {
+                    text: time_sec;
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: #2dd4bf;
+                }
+            }
+
+            Text {
+                text: date_text;
+                font-size: 13px;
+                color: #f472b6;
+                horizontal-alignment: center;
+            }
+        }
+
+        // Calendar Section
+        Rectangle {
+            background: rgba(49, 50, 68, 0.5);
+            border-radius: 8px;
+            border-width: 1px;
+            border-color: rgba(124, 111, 247, 0.3);
+            
+            VerticalBox {
+                padding: 4px;
+                spacing: 2px;
+
+                // Calendar Header
+                HorizontalBox {
+                    padding: 0;
+                    alignment: space-between;
+                    NavButton {
+                        text: "«";
+                        clicked => { root.prev_year() }
+                    }
+                    NavButton {
+                        text: "‹";
+                        clicked => { root.prev_month() }
+                    }
+                    Text {
+                        text: month_year;
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #a5b4fc;
+                        vertical-alignment: center;
+                    }
+                    NavButton {
+                        text: "›";
+                        clicked => { root.next_month() }
+                    }
+                    NavButton {
+                        text: "»";
+                        clicked => { root.next_year() }
+                    }
+                }
+
+                // Weekday Headers
+                HorizontalBox {
+                    padding: 0;
+                    spacing: 2px;
+                    for day_name[i] in ["S", "M", "T", "W", "T", "F", "S"]:
+                        Rectangle {
+                            height: 14px;
+                            width: 35px;
+                            Text {
+                                text: day_name;
+                                font-size: 9px;
+                                font-weight: 700;
+                                color: (i == 0 || i == 6) ? #f87171 : rgba(255, 255, 255, 0.5);
+                            }
+                        }
+                }
+
+                // Days Grid
+                Rectangle {
+                    height: 108px;
+                    for day[i] in calendar_days:
+                        Rectangle {
+                            x: mod(i, 7) * 40px;
+                            y: floor(i / 7) * 18px;
+                            width: 38px;
+                            height: 16px;
+                            background: day.is_today ? #6d28d9 : transparent;
+                            border-radius: 4px;
+
+                            Text {
+                                text: day.day;
+                                font-size: 10px;
+                                color: day.is_other_month ? rgba(255, 255, 255, 0.2) : 
+                                       day.is_today ? #ffffff :
+                                       day.is_weekend ? #f87171 : #ffffff;
+                                horizontal-alignment: center;
+                                vertical-alignment: center;
+                            }
+                        }
+                }
+            }
+        }
+
+        // Disk Usage Section
+        Text {
+            text: disk_usage;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            horizontal-alignment: center;
+        }
+    }
+}
