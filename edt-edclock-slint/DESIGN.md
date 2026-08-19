@@ -15,6 +15,8 @@ Native Linux clock/calendar. Rust + Slint, dark Obsidian-like UI.
 
 Sysinfo and Slint stay in the binary so `cargo test` does not need a display.
 
+The lower-right 12×12 square copies `clipboard::CLIPBOARD_PHRASE` (`iShouldaBoughtAServerTech!`) via `arboard`, matching `edt-edclock-windows`.
+
 ## Packaging
 
 - **Ubuntu/Debian:** `build-deb.sh` stages `/usr/bin` + `.desktop` + copyright and declares `Depends` for fontconfig plus the Wayland/X11/GL libraries winit **dlopens** (`ldd` will not list them).

@@ -1,5 +1,6 @@
 pub mod calendar;
 pub mod cli;
+pub mod clipboard;
 pub mod disk;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

@@ -1,5 +1,9 @@
 # Plan — edt-edclock-slint
 
+## Done (v0.2.1)
+
+- Lower-right clipboard square (Windows phrase `iShouldaBoughtAServerTech!` via `arboard`).
+
 ## Done (v0.2.0)
 
 - Ubuntu rustc / lockfile v4 diagnosis and crate edition + lockfile v3.

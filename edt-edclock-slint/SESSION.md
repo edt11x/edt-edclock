@@ -1,7 +1,6 @@
 # Session notes — edt-edclock-slint
 
-Prompts and answers from the work that produced **v0.2.0**, so this tree
-can be resumed later by this model or another.
+Prompts and answers through **v0.2.1**, so this tree can be resumed later.
 
 ## Prompt 1 — packaging and Ubuntu rustc
 
@@ -30,6 +29,18 @@ can be resumed later by this model or another.
 **Unrelated / left unstaged:** root `package-lock.json` npm lockfile churn present before this session. Not part of the Slint change.
 
 **Scanners:** Snyk CLI and Cursor code-scan CLI were not available. Substitutes: `cargo test`, `cargo check`. Workspace trust files added under `.vscode/` and `.cursor/`; `.snyk` policy at repo root.
+
+## Prompt 3 — Windows clipboard square
+
+**User:** The Windows app has a small grey dot that copies a magic string to the clipboard. Port that to Slint.
+
+**Done:** 12×12 lower-right square copies `iShouldaBoughtAServerTech!` via `arboard` (X11 + Wayland). Phrase in `src/clipboard.rs`. Version **0.2.1**.
+
+## Prompt 4 — commit workflow + push
+
+**User:** Run the commit workflow and push.
+
+**Done:** This landing. `package-lock.json` left unstaged again (unrelated npm lockfile).
 
 ## Resume hints
 

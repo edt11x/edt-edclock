@@ -6,6 +6,7 @@ A native Linux clock and calendar application built with Rust and the Slint UI f
 - Digital clock (HH:MM:SS).
 - Full interactive calendar with month/year navigation.
 - Disk usage indicator.
+- Lower-right grey square copies a preset phrase to the clipboard (same as the Windows app).
 - Ships as a standalone binary plus a few desktop libraries (fontconfig, Wayland/X11, OpenGL).
 
 ## Requirements
@@ -67,7 +68,7 @@ edt-edclock-slint
 edt-edclock-slint --version
 edt-edclock-slint --help
 ```
-The window title includes the crate version (`edt-edclock (Slint) v0.2.0`).
+The window title includes the crate version (`edt-edclock (Slint) v0.2.1`).
 
 ## Tests
 ```bash

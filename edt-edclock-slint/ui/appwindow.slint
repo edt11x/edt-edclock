@@ -7,6 +7,23 @@ struct CalendarDay {
     is_other_month: bool,
 }
 
+// Matches edt-edclock-windows CopySquareButton (12×12, lower-right).
+component CopyPhraseDot inherits Rectangle {
+    callback clicked <=> touch.clicked;
+    width: 12px;
+    height: 12px;
+    accessible-role: button;
+    accessible-label: "Copy phrase to clipboard";
+    background: touch.pressed ? #a5b4fc : touch.has-hover ? #a5b4fc : rgba(124, 111, 247, 0.25);
+    border-width: 1px;
+    border-color: rgba(124, 111, 247, 0.45);
+    border-radius: 2px;
+
+    touch := TouchArea {
+        mouse-cursor: pointer;
+    }
+}
+
 component NavButton inherits Rectangle {
     in property <string> text;
     callback clicked <=> touch.clicked;
@@ -47,6 +64,12 @@ export component AppWindow inherits Window {
     callback next_month();
     callback prev_year();
     callback next_year();
+    callback copy_phrase();
+
+    Rectangle {
+        width: 100%;
+        height: 100%;
+        background: transparent;
 
     VerticalBox {
         padding: 2px;
@@ -190,5 +213,12 @@ export component AppWindow inherits Window {
             color: rgba(255, 255, 255, 0.4);
             horizontal-alignment: center;
         }
+    }
+
+    CopyPhraseDot {
+        x: parent.width - 20px;
+        y: parent.height - 18px;
+        clicked => { root.copy_phrase(); }
+    }
     }
 }

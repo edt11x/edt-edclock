@@ -3,6 +3,7 @@ slint::include_modules!();
 use chrono::{Datelike, Local, Month, Timelike};
 use edt_edclock_slint::calendar::{self, DayCell};
 use edt_edclock_slint::cli::{self, Action};
+use edt_edclock_slint::clipboard::CLIPBOARD_PHRASE;
 use edt_edclock_slint::disk;
 use edt_edclock_slint::{window_title, VERSION};
 use num_traits::FromPrimitive;
@@ -128,6 +129,12 @@ fn run_ui() -> Result<(), slint::PlatformError> {
             },
         );
     }
+
+    ui.on_copy_phrase(|| {
+        if let Ok(mut clipboard) = arboard::Clipboard::new() {
+            let _ = clipboard.set_text(CLIPBOARD_PHRASE);
+        }
+    });
 
     ui.set_disk_usage(SharedString::from(get_disk_usage()));
     ui.run()

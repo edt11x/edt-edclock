@@ -7,7 +7,7 @@ A native Rust implementation of the `edt-edclock` application using the Slint UI
 - `edt-edclock-slint/`
   - `src/main.rs`: Rust backend logic, chrono integration, and sysinfo for disk usage.
   - `ui/appwindow.slint`: Slint UI definition using a dark theme with cyan/lavender accents.
-  - `Cargo.toml`: version **0.2.0**, edition **2021**, `rust-version = "1.88"`, dependencies (`slint` 1.16.1, `chrono`, `sysinfo`, `num-traits`, `num-derive`).
+  - `Cargo.toml`: version **0.2.1**, edition **2021**, `rust-version = "1.88"`, dependencies (`slint` 1.16.1, `arboard`, `chrono`, `sysinfo`, `num-traits`, `num-derive`).
   - `src/lib.rs` + `calendar.rs` / `disk.rs` / `cli.rs`: testable core (no display).
   - `SESSION.md`, `PLAN.md`, `DESIGN.md`, `TODO.md`: session resume notes.
   - `Cargo.lock`: lockfile **version 3** so older Ubuntu/Debian cargo can parse it (v4 needs `-Znext-lockfile-bump` or Cargo 1.83+).
@@ -31,6 +31,7 @@ A native Rust implementation of the `edt-edclock` application using the Slint UI
 - **Calendar:** `calendar::calendar_cells` builds a 42-cell grid. Navigation uses `prev_month` / `next_month`. View date is `Rc<Cell<_>>` in `main`.
 - **Version:** `edt_edclock_slint::VERSION` / `window_title()`; Slint `app-title`; CLI `--help` / `--version`.
 - **Disk Usage:** Fetched using `sysinfo` crate and updated every minute or on startup.
+- **Clipboard square:** Lower-right 12×12 control copies `iShouldaBoughtAServerTech!` (`clipboard::CLIPBOARD_PHRASE`), matching `edt-edclock-windows`.
 
 ## Packaging notes
 - Binary NEEDED: `libfontconfig`, `libgcc_s`, `libm`, `libc`. Wayland/X11/OpenGL are **dlopen**'d (winit): must be Depends/dnf runtime deps even though `ldd` omits them.
