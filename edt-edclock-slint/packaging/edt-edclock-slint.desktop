@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=EDT EdClock (Slint)
+Comment=Ultra-compact digital clock and calendar
+Exec=edt-edclock-slint
+Icon=office-calendar
+Terminal=false
+Type=Application
+Categories=Utility;Clock;Calendar;
+Keywords=Clock;Calendar;Rust;Slint;
+StartupNotify=false

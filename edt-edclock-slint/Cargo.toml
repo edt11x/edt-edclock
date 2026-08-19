@@ -1,7 +1,13 @@
 [package]
 name = "edt-edclock-slint"
-version = "0.1.0"
-edition = "2024"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.88"
+authors = ["Edward Thompson <edt11x@gmail.com>"]
+description = "Ultra-compact digital clock and calendar"
+homepage = "https://github.com/edt11x/edt-edclock"
+repository = "https://github.com/edt11x/edt-edclock"
+readme = "README.md"
 
 [dependencies]
 chrono = "0.4.44"
@@ -12,3 +18,18 @@ sysinfo = "0.39.1"
 
 [build-dependencies]
 slint-build = "1.16.1"
+
+# Used by cargo-deb when it is available. build-deb.sh does not require it.
+[package.metadata.deb]
+maintainer = "Edward Thompson <edt11x@gmail.com>"
+section = "utils"
+priority = "optional"
+extended-description = """\
+A native Linux clock and calendar application built with Rust and Slint. \
+Shows a digital clock, an interactive calendar, and home-disk usage.
+"""
+depends = "$auto, libxkbcommon0, libxkbcommon-x11-0, libwayland-client0, libwayland-egl1, libx11-6, libxcb1, libx11-xcb1, libxi6, libxcursor1, libxrender1, libegl1, libgl1"
+assets = [
+    ["target/release/edt-edclock-slint", "usr/bin/", "755"],
+    ["packaging/edt-edclock-slint.desktop", "usr/share/applications/", "644"],
+]

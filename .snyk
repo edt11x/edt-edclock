@@ -1,0 +1,4 @@
+# Snyk policy — edt-edclock (all implementations in this repo)
+version: v1.25.1
+ignore: {}
+patch: {}

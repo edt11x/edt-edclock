@@ -1,0 +1,9 @@
+---
+description: Landing changes uses the global Commit Workflow skill once
+alwaysApply: false
+---
+
+When asked to commit, push, or "run the commit workflow", follow
+`~/.grok/skills/commit-workflow/SKILL.md` **once**. Do not re-enter that
+skill, do not launch `/commit-workflow` from inside a run, and do not
+duplicate staging or version bumps.

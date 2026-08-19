@@ -1,0 +1,5 @@
+# Honored only when cargo is invoked through rustup.
+# Ubuntu/Debian apt rustc is typically too old for Slint (edition 2024, rustc 1.88+).
+# setup.sh / install.sh will install rustup when the system compiler is too old.
+[toolchain]
+channel = "stable"

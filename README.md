@@ -4,7 +4,7 @@ A modern, ultra-compact Linux desktop clock and calendar application built with 
 
 ## Project Versions
 
-This project is available in two implementations:
+This project is available in three implementations:
 
 ### 1. React + Electron (Original)
 Modern, web-based implementation using React, TypeScript, and Electron.
@@ -18,6 +18,15 @@ Native Python implementation using the Qt framework.
 - **Setup**: `cd edt-edclock-py && ./setup-py.sh`
 - **Run**: `cd edt-edclock-py && ./run.sh`
 - **Background / login autostart**: `cd edt-edclock-py && ./start-background.sh`
+
+### 3. Rust + Slint (native)
+Standalone binary using the Slint UI toolkit.
+- **Location**: `edt-edclock-slint/`
+- **Ubuntu / Debian**: `cd edt-edclock-slint && ./build-deb.sh && sudo apt install ./dist/edt-edclock-slint_*.deb`
+- **Fedora**: `cd edt-edclock-slint && ./install.sh`
+- **From source**: `cd edt-edclock-slint && ./setup.sh && ./run.sh`
+
+Building from source needs rustc 1.88+ (Slint is edition 2024). Ubuntu/Debian `apt install rustc` is typically too old and fails with `feature edition2024 is required` / lockfile v4 errors. `setup.sh` installs rustup in that case. See `edt-edclock-slint/README.md`.
 
 ## Features
 

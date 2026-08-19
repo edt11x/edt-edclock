@@ -29,7 +29,8 @@ component NavButton inherits Rectangle {
 }
 
 export component AppWindow inherits Window {
-    title: "edt-edclock (Slint)";
+    in property <string> app-title: "edt-edclock (Slint)";
+    title: app-title;
     min-width: 280px;
     min-height: 300px;
     background: @linear-gradient(180deg, #1e1e2e 0%, #181825 100%);

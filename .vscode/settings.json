@@ -1,0 +1,7 @@
+{
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.banner": "never",
+  "snyk.advanced.trustedFolders": [
+    "${workspaceFolder}"
+  ]
+}
